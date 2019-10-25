@@ -1,0 +1,41 @@
+struct Line {
+    int m, b;
+};
+
+struct HullDynamic { 
+        vector<Line> a;
+        void clear() {
+          a.clear();
+        }
+        bool empty() {
+          return a.empty();
+        }
+        bool bad(int y) {
+        auto z = y + 1;
+        if (y == 0) {
+            if (z == (int) a.size()) return 0;
+            return a[y].m == a[z].m && a[y].b <= a[z].b;
+        }
+        auto x = y - 1;
+        if (z == (int) a.size()) return a[y].m == a[x].m && a[y].b <= a[x].b;
+        return (double)(a[x].b - a[y].b)*(a[z].m - a[y].m) >= (double)(a[y].b - a[z].b)*(a[y].m - a[x].m);
+    }
+    void insert_line(int m, int b) {
+            a.push_back({m, b});
+        while (a.size() >= 2 && bad((int) a.size() - 2)) a.erase(a.begin() + a.size() - 2);
+    }
+    int query(int x) {
+            int low = 0, high = (int) a.size() - 1;
+            while (low < high) {
+              int mid = (low + high) >> 1;
+              Line &me = a[mid];
+              Line &s = a[mid + 1];
+              if (me.b - s.b < (s.m - me.m) * x) {
+                low = mid + 1;
+              } else {
+                high = mid;
+              }
+            }
+        return a[low].m * x + a[low].b;
+    }
+};
