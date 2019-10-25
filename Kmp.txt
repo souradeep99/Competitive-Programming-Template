@@ -1,0 +1,39 @@
+vector<int> KMPArray(string s)
+{
+    int n=s.length();
+    int lps[n];
+    init(lps,0);
+    int index=0;
+    for(int i=1;i<n;)
+    {
+        if(s[i]==s[index])
+            lps[i]=index+1,index++,i++;
+        else 
+        {
+            if(index) index=lps[index-1];
+            else lps[i]=0,i++;
+        }
+    }
+
+    vector<int>deep;
+    for(auto i:lps) deep.pb(i);
+
+    return deep;
+}
+
+int KMP(string text,string pattern,vector<int>v)
+{
+    int i=0,j=0;
+    while(i<text.length() && j<pattern.length())
+    {
+        if(text[i]==pattern[j])
+            i++,j++;
+        else
+        {
+            if(j) j=v[j-1];
+            else i++;
+        }   
+    }
+
+    return j;
+}
