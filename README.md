@@ -1,1 +1,1 @@
-# codechef
+# Competitive Templates
