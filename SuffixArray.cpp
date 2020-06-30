@@ -25,7 +25,6 @@ struct SuffixArray{
             a_new[pos[i]] = x;
             pos[i]++;
         }
-
         a = a_new;
 
         cnt.clear();
@@ -50,7 +49,6 @@ struct SuffixArray{
     }
 
     void solve(){
-
         s = s + "$";
         int n = s.length();
         vector<int>p(n), c(n);
@@ -93,7 +91,6 @@ struct SuffixArray{
             cout << p[i] << " " << s.substr(p[i], n - p[i]) << "\n";
         }
     }
-
 };
 
 
@@ -102,4 +99,20 @@ struct SuffixArray{
 //cin >> s;
 //SuffixArray deep(s);
 //deep.solve();
+
+/*
+Input: 
+ababba
+
+Output:
+6 $
+5 a$
+0 ababba$
+2 abba$
+4 ba$
+1 babba$
+3 bba$
+
+$ is added just, we can take $ == "" ($ is very impostant)
+*/
 
