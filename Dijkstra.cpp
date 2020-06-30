@@ -27,3 +27,15 @@ void dijkstra(int s) {
         }
     }
 }
+
+/*
+for(int i = 0; i <= n; i++){
+     adj[i].clear();
+     d[i] = BINF, p[i] = -1;
+}
+ 
+adj[u].push_back(make_pair(v, w)); 
+adj[v].push_back(make_pair(u, w));
+ 
+dijkstra(src);
+*/
